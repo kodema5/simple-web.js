@@ -1,0 +1,16 @@
+// create/select bootstrap-theme and other overrides
+//
+@import "../node_modules/bootstrap/scss/_functions";
+@import "../node_modules/bootstrap/scss/_variables";
+@import "../node_modules/bootstrap/scss/_mixins";
+
+$theme-colors: (
+    primary: $purple
+);
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+
+// copy ../node_modules/bootstrap-icon/font/fonts to dist
+//
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons";

@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.0.0-beta2",
+    "bootstrap-icons": "^1.4.0",
+    "htm": "^3.0.4",
+    "preact": "^10.5.12"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.0",
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^1.0.6",
+    "live-server": "^1.2.1",
+    "rollup": "^2.40.0",
+    "sass": "^1.32.8",
+    "webpack": "^5.24.3",
+    "webpack-cli": "^4.5.0"
+  },
+  "scripts": {
+    "start": "concurrently \"npm run dev\" \"npm run watch\"",
+    "dev": "concurrently \"npm run dev-live\" \"npm run dev-express\"",
+    "dev-express": "node dev-express.js",
+    "dev-live": "live-server . --ignore=node_modules --no-browser --port=8080",
+    "watch": "concurrently \"npm run watch-js\" \"npm run watch-css\" \"npm run watch-example\"",
+    "watch-js": "webpack --watch --mode=development --output-filename simple-web.js",
+    "watch-css": "sass --watch --source-map --style expanded --embed-sources scss/index.scss:dist/simple-web.css",
+    "watch-example": "rollup --watch -f iife -n example --globals simple-web:web --intro \"const global=window;\" -i example/index.js -o dist/example.js -m dist/example.map",
+    "build": "npm run build-js && npm run build-css && npm run build-example",
+    "build-js": "webpack --mode=production --output-filename simple-web.min.js",
+    "build-css": "sass --style compressed --embed-sources scss/index.scss:dist/simple-web.min.css",
+    "build-example": "rollup --compact -f iife -n example --globals simple-web:web --intro \"const global=window;\" -i example/index.js -o dist/example.min.js -m dist/example.min.map"
+  }
+}
