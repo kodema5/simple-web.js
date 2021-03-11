@@ -38,4 +38,4 @@ app.use('/api/:appId/:method', createProxyMiddleware({
 
 const httpPort = process.env.SIMPLE_WEB_PORT || 3000
 app.listen(httpPort,
-    () => console.log(`dev.js listening at http://localhost:${httpPort}`))
+    () => console.log(`\ndev-express.js listening at http://localhost:${httpPort}\n`))

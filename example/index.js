@@ -1,7 +1,11 @@
 // for UI (View/Controller) code
 
-import  { html, render, useState, setApi, setState, getState, setDefaultAjaxHeader } from 'simple-web'
-import { clearState } from '../src/state'
+import  {
+    html, render,
+    useState,
+    setApi,
+    setState, getState, clearState,
+} from 'simple-web'
 
 let api /* == web.api object */ = setApi({
     'user.signon': {
@@ -9,7 +13,7 @@ let api /* == web.api object */ = setApi({
         input: (a) => ({cmd:'signon', ...a}),
         output: async (r) => {
             setState('user.signed_on', true)
-            setDefaultAjaxHeader({
+            setState('ajax.headers', {
                 'Authorization': 'Bearer (jwt)'
             })
             return r
@@ -20,9 +24,6 @@ let api /* == web.api object */ = setApi({
         url: '/httpbin/post',
         input: (a) => ({cmd:'signoff', ...a}),
         output: async (a) => {
-            setDefaultAjaxHeader({
-                'Authorization':null
-            })
             clearState()
             return a
         }

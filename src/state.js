@@ -3,11 +3,11 @@ import { setObject, getObject, parseJSON } from './object'
 export var state = null
 
 export const setState = (path, value) => {
-    state = setObject(state, path, value)
+    state = setObject(state || {}, path, value)
 }
 
-export const getState = (path) => state && path
-    ? getObject(state , path)
+export const getState = (path, defaultValue) => state && path
+    ? getObject(state , path, defaultValue)
     : state
 
 export const removeState = (path) => state && deleteObject(state, path)

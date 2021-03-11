@@ -9,3 +9,9 @@ with bundled
     and .. (etc)
 
 /dist/fonts = bootstrap-icons/font/fonts
+
+```
+npm install
+npm run start
+http://localhost:3000/public/example/index.html
+```

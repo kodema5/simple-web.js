@@ -1,11 +1,9 @@
 import { cleanObject } from './object'
+import { getState } from './state'
 
 export const defaultAjaxHeaders = {
     'Content-Type': 'application/json'
 }
-
-export const setDefaultAjaxHeader = (obj) =>
-    cleanObject(Object.assign(defaultAjaxHeaders, obj))
 
 export const ajax = ({
     url,
@@ -33,7 +31,9 @@ export const ajax = ({
     //
     let fetchOpt = {
         method,
-        headers: Object.assign({}, defaultAjaxHeaders, headers),
+        headers: Object.assign({
+            ...(cleanObject(getState('ajax.headers'))),
+        }, defaultAjaxHeaders, headers),
     }
 
     // fix-body
