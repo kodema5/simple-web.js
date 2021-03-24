@@ -93,9 +93,10 @@ export class PubSub {
     }
 }
 
+const BROADCAST_CHANNEL_ID = 'web-broadcast-channel'
 // this is a global pubsub
 let ps = new PubSub({
-    broadcastChannelId: 'ui-lib-publish-subscribe'
+    broadcastChannelId: BROADCAST_CHANNEL_ID
 })
 export const publish = ps.publish.bind(ps)
 export const subscribe = ps.subscribe.bind(ps)

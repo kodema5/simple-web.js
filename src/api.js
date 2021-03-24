@@ -1,4 +1,4 @@
-import { getObject, setObject } from './object'
+import { setObject } from './object'
 import { ajaxFn } from './ajax'
 
 // api stores various user-defined ajax/fn

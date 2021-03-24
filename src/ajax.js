@@ -5,6 +5,8 @@ export const defaultAjaxHeaders = {
     'Content-Type': 'application/json'
 }
 
+const AJAX_HEADERS = 'ajax.headers'
+
 export const ajax = ({
     url,
     data,
@@ -32,7 +34,7 @@ export const ajax = ({
     let fetchOpt = {
         method,
         headers: Object.assign({
-            ...(cleanObject(getState('ajax.headers'))),
+            ...(cleanObject(getState(AJAX_HEADERS))),
         }, defaultAjaxHeaders, headers),
     }
 

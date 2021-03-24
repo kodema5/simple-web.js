@@ -20,13 +20,19 @@ export const clearState = () => {
 
 // maintain state across page load
 //
-const STORAGE_KEY = 'simple-web-state'
-;(() => {
+const STORAGE_KEY = 'web-state'
+
+export const saveState = () => {
+    global.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+}
+
+export const loadState = () => {
     let s = global.sessionStorage.getItem(STORAGE_KEY)
     state = parseJSON(s)
-})()
+}
 
+// load state on loading
+//
+loadState()
 
-global.addEventListener('beforeunload', (_) => {
-    global.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-})
+global.addEventListener('beforeunload', saveState)

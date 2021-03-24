@@ -1,4 +1,4 @@
-(function (simpleWeb) {
+var example = (function (exports, simpleWeb) {
     'use strict';
 
     const global=window;
@@ -27,6 +27,7 @@
             }
         }
     });
+
 
 
     const App = (props) => {
@@ -97,7 +98,22 @@
     `
     };
 
-    simpleWeb.render(simpleWeb.html`<${App} name="xxx" />`, document.getElementById('root'));
+    const getTargetId = () => {
+        try {
+            let el = document.currentScript;
+            return el.dataset.targetId
+        } catch(x) {
+        }
+    };
 
-}(web));
+
+    simpleWeb.render(simpleWeb.html`<${App} name="xxx" />`, document.getElementById(getTargetId() || 'root'));
+
+    exports.App = App;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
+
+    return exports;
+
+}({}, web));
 //# sourceMappingURL=example.js.map

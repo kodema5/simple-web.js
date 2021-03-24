@@ -6,6 +6,7 @@ import  {
     setApi,
     setState, getState, clearState,
 } from 'simple-web'
+import { ContextExclusionPlugin } from 'webpack'
 
 let api /* == web.api object */ = setApi({
     'user.signon': {
@@ -31,7 +32,8 @@ let api /* == web.api object */ = setApi({
 })
 
 
-const App = (props) => {
+
+export const App = (props) => {
 
     const [signedOn, setSignedOn] = useState(getState('user.signed_on'))
 
@@ -99,5 +101,14 @@ const App = (props) => {
     `
 }
 
-render(html`<${App} name="xxx" />`, document.getElementById('root'))
+const getTargetId = () => {
+    try {
+        let el = document.currentScript
+        return el.dataset.targetId
+    } catch(x) {
+    }
+}
+
+
+render(html`<${App} name="xxx" />`, document.getElementById(getTargetId() || 'root'))
 
