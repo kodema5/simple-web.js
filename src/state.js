@@ -1,4 +1,5 @@
 import { setObject, getObject, parseJSON } from './object'
+import { SESSION_STORAGE_ID } from './const'
 
 export var state = null
 
@@ -17,22 +18,16 @@ export const clearState = () => {
     global.sessionStorage.clear()
 }
 
-
-// maintain state across page load
-//
-const STORAGE_KEY = 'web-state'
-
 export const saveState = () => {
-    global.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+    global.sessionStorage.setItem(SESSION_STORAGE_ID, JSON.stringify(state))
 }
 
 export const loadState = () => {
-    let s = global.sessionStorage.getItem(STORAGE_KEY)
+    let s = global.sessionStorage.getItem(SESSION_STORAGE_ID)
     state = parseJSON(s)
 }
 
-// load state on loading
+// maintain state on page reload
 //
 loadState()
-
 global.addEventListener('beforeunload', saveState)

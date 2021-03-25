@@ -1,3 +1,4 @@
+import { BROADCAST_CHANNEL_ID } from './const'
 export class PubSub {
 
     constructor ({
@@ -93,8 +94,8 @@ export class PubSub {
     }
 }
 
-const BROADCAST_CHANNEL_ID = 'web-broadcast-channel'
-// this is a global pubsub
+// for a global pubsub
+//
 let ps = new PubSub({
     broadcastChannelId: BROADCAST_CHANNEL_ID
 })
